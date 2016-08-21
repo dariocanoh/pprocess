@@ -75,6 +75,9 @@
 ---		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ---		SOFTWARE.
 
+--- Nos aseguramos de que se carguen primero las versiones de librerias que tenemos en 'modules'
+package.path  = ';./modules/pprocess/?.lua;' .. package.path
+
 --- Importamos las clases y librerias necesarias
 
 local PProcess, Lanes
