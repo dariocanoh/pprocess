@@ -76,7 +76,15 @@
 ---		SOFTWARE.
 
 --- Nos aseguramos de que se carguen primero las versiones de librerias que tenemos en 'modules'
-package.path  = ';./modules/pprocess/?.lua;' .. package.path
+package.path  = './pprocess/?.lua;./libs/pprocess/?.lua;./modules/pprocess/?.lua;' .. package.path
+
+if lide.platform.getOSName() == 'Windows' then
+	package.cpath = ';./modules/pprocess/?/core.dll;' .. package.cpath 
+	.. ';./pprocess/?/core.dll;./libs/pprocess/?/core.dll;'
+else
+	package.cpath = ';./modules/pprocess/?/core.so;'  .. package.cpath
+	.. ';./pprocess/?/core.so;./libs/pprocess/?/core.so;'
+end
 
 --- Importamos las clases y librerias necesarias
 
