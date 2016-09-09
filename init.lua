@@ -75,15 +75,20 @@
 ---		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ---		SOFTWARE.
 
---- Nos aseguramos de que se carguen primero las versiones de librerias que tenemos en 'modules'
-package.path  = './pprocess/?.lua;./libs/pprocess/?.lua;./modules/pprocess/?.lua;' .. package.path
+--- Nos aseguramos de que las dependencias se carguen en el orden adecuado:
+
+package.path  = './pprocess/?.lua;' .. 
+				'./libs/pprocess/?.lua;' ..
+				'./modules/pprocess/?.lua;' .. package.path 
 
 if lide.platform.getOSName() == 'Windows' then
-	package.cpath = ';./modules/pprocess/?/core.dll;' .. package.cpath 
-	.. ';./pprocess/?/core.dll;./libs/pprocess/?/core.dll;'
+	package.cpath = './pprocess/?/core.dll;'          ..
+					'./libs/pprocess/?/core.dll;'     .. 
+					';./modules/pprocess/?/core.dll;' .. package.cpath 
 else
-	package.cpath = ';./modules/pprocess/?/core.so;'  .. package.cpath
-	.. ';./pprocess/?/core.so;./libs/pprocess/?/core.so;'
+	package.cpath = './pprocess/?/core.so;'           ..
+					'./libs/pprocess/?/core.so;'      .. 
+					';./modules/pprocess/?/core.so;'  .. package.cpath 
 end
 
 --- Importamos las clases y librerias necesarias
